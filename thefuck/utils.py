@@ -11,8 +11,8 @@ from functools import wraps
 from warnings import warn
 from .conf import settings
 from .system import Path
-
-DEVNULL = open(os.devnull, 'w')
+with open(os.devnull, 'w') as DEVNULL:
+    pass
 
 if six.PY2:
     import anydbm
