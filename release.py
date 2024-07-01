@@ -25,8 +25,8 @@ with open('setup.py', 'w') as sf:
     sf.writelines(lines)
 
 call('git pull', shell=True)
-call('git commit -am "Bump to {}"'.format(version), shell=True)
-call('git tag {}'.format(version), shell=True)
+call('git commit -am "Bump to {}"'.format(version), shell=False)
+call('git tag {}'.format(version), shell=False)
 call('git push', shell=True)
 call('git push --tags', shell=True)
 
