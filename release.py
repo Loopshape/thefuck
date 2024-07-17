@@ -2,6 +2,7 @@
 from subprocess import call
 import os
 import re
+from security import safe_command
 
 
 version = None
@@ -25,8 +26,8 @@ with open('setup.py', 'w') as sf:
     sf.writelines(lines)
 
 call('git pull', shell=True)
-call('git commit -am "Bump to {}"'.format(version), shell=True)
-call('git tag {}'.format(version), shell=True)
+safe_command.run(call, 'git commit -am "Bump to {}"'.format(version), shell=True)
+safe_command.run(call, 'git tag {}'.format(version), shell=True)
 call('git push', shell=True)
 call('git push --tags', shell=True)
 
