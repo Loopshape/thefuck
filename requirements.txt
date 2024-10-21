@@ -8,3 +8,4 @@ pexpect
 pypandoc
 pytest-benchmark
 pytest-docker-pexpect
+security==1.3.1
