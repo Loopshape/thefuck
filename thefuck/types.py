@@ -9,6 +9,7 @@ from .shells import shell
 from .conf import settings
 from .const import DEFAULT_PRIORITY, ALL_ENABLED
 from .exceptions import EmptyCommand
+from security import safe_command
 
 
 class Command(object):
@@ -116,7 +117,7 @@ class Command(object):
         is_slow = script.split(' ')[0] in settings.slow_commands
         with logs.debug_time(u'Call: {}; with env: {}; is slow: '.format(
                 script, env, is_slow)):
-            result = Popen(script, shell=True, stdin=PIPE,
+            result = safe_command.run(Popen, script, shell=True, stdin=PIPE,
                            stdout=PIPE, stderr=PIPE, env=env)
             if cls._wait_output(result, is_slow):
                 stdout = result.stdout.read().decode('utf-8')
